@@ -27,7 +27,7 @@ const editTravel = (travelId, title, setTitle, setTravel, setEditing) => {
 }
 
 const deleteTravel = (_id, setTravel) => {
-    axios.delete(`http://localhost:8000/deleteTravel`, {_id})
+    axios.delete(`http://localhost:8000/deleteTravel`, { data: {_id}, })
     .then((data) => {
         console.log(data)
         getAllTravels(setTravel)
