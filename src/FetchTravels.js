@@ -1,14 +1,16 @@
 import axios from 'axios';
 
+const BASE_URL ='http://localhost:8000';
+
 const getAllTravels = (setTravel) => {
-    axios.get("http://localhost:8000")
+    axios.get(BASE_URL)
     .then(({data}) => {console.log(data)
         setTravel(data);
     })
 }
 
 const addTravel = (title, setTitle, setTravel) => {
-    axios.post(`http://localhost:8000/saveTravels`, {title})
+    axios.post(`${BASE_URL}/saveTravels`, {title})
     .then((data) => {
         console.log(data);
         setTitle("");
@@ -17,7 +19,7 @@ const addTravel = (title, setTitle, setTravel) => {
 }
 
 const editTravel = (travelId, title, setTitle, setTravel, setEditing) => {
-    axios.put(`http://localhost:8000/editTravel`, {_id: travelId, title})
+    axios.put(`${BASE_URL}/editTravel`, {_id: travelId, title})
     .then((data)=> {
         console.log(data);
         setTitle("");
@@ -27,7 +29,7 @@ const editTravel = (travelId, title, setTitle, setTravel, setEditing) => {
 }
 
 const deleteTravel = (_id, setTravel) => {
-    axios.delete(`http://localhost:8000/deleteTravel`, { data: {_id}, })
+    axios.delete(`${BASE_URL}/deleteTravel`, { data: {_id}, })
     .then((data) => {
         console.log(data)
         getAllTravels(setTravel)
